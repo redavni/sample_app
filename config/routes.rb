@@ -1,6 +1,7 @@
 SampleApp::Application.routes.draw do
-  
-  get "users/new"
+  # REST style URI's for User
+  # Example of what is generated: http://ruby.railstutorial.org/chapters/sign-up#table-RESTful_users
+  resources :users
 
   root to: 'static_pages#home'
 
