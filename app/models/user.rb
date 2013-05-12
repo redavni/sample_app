@@ -23,5 +23,7 @@ class User < ActiveRecord::Base
 
   # Not all databases use case-sensitive indexes so we'll make sure the 
   # email is saved in all lower case.
-  before_save { |user| user.email = user.email.downcase }
+  # before_save { |user| user.email = user.email.downcase }
+  # Nicer way
+  before_save { email.downcase! }
 end
