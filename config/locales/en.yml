@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+
+# Used to avoid the 'Password digest cannot be blank' error message.
+  activerecord:
+    attributes:
+      user:
+        password_digest: "Password"

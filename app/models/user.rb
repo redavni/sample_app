@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
+  # Removed presence: true because the password_digest will show the same error
+  # message anyway.
+  validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
   # Not all databases use case-sensitive indexes so we'll make sure the 
