@@ -2,10 +2,15 @@ SampleApp::Application.routes.draw do
   # REST style URI's for User
   # Example of what is generated: http://ruby.railstutorial.org/chapters/sign-up#table-RESTful_users
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   root to: 'static_pages#home'
 
-  match '/signup', to: 'users#new'
+  match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  # Note the use of via: :delete for the signout route, which indicates 
+  # that it should be invoked using an HTTP DELETE request.
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
