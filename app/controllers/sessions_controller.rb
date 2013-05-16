@@ -7,7 +7,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email].downcase)
     if user && user.authenticate(params[:password])
       sign_in user
-      redirect_to user
+      # Send them back to the page they were requesting, or
+      # to their profile page by default.
+      redirect_back_or user
     else
       # Need to use flash.now for re-renders, no flash.
       # The reason is we have been using flash within redirects which
